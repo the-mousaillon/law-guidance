@@ -1,0 +1,8 @@
+je suis intermitant du spectacle -> oui -> j'ai des questions sur -> la qualification contractuelle -> je suis en cdd            -> [réponse]
+                                                                                                    -> je suis en cdi            -> [réponse]
+                                                                                                    -> je suis auto-entrepreneur -> [réponse]
+                                                                  -> rupture contractuelle -> r
+                                                                  -> les droits au chomage -> r
+                                                                  -> le régime fiscal      -> r
+                                        
+                                 -> non -> [Cela ne vous concerne pas]
