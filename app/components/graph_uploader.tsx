@@ -3,7 +3,7 @@
 
 "use client";
 
-import { parseDAG, dumpDag, dagToEcharts, testParseTextToDAG } from "../lib/graph"
+import { parseDagAndLeafsFromText, dumpDag, dagToEcharts, testParseTextToDAG } from "../lib/graph"
 import ReactECharts from 'echarts-for-react';
 import React, { use, useEffect, useState } from "react";
 
@@ -63,15 +63,15 @@ const Uploader = (cb: any) => (
     </p>
   </Dragger>
 )
+
+
 export function GraphUploader(props: {register: any}) {
   let [text, setText] = useState([] as any)
   let subsett = (s: any) => setText([...text, s])
   useEffect(() => {
     if (text.length > 0) {
       let t0 = text[0]
-      t0 = t0.split("\n").filter((s: any) => s.length > 0)
-      console.log("T0: ", t0)
-      let dag = parseDAG(t0)
+      let dag = parseDagAndLeafsFromText(t0)
       if (props.register) {
         props.register(dag)
       }

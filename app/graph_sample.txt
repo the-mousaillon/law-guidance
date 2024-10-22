@@ -1,8 +1,59 @@
-je suis intermitant du spectacle -> oui -> j'ai des questions sur -> la qualification contractuelle -> je suis en cdd            -> [réponse]
-                                                                                                    -> je suis en cdi            -> [réponse]
-                                                                                                    -> je suis auto-entrepreneur -> [réponse]
-                                                                  -> rupture contractuelle -> r
-                                                                  -> les droits au chomage -> r
-                                                                  -> le régime fiscal      -> r
-                                        
+[DAG]
+je suis intermitant du spectacle -> oui -> j'ai des questions sur -> la qualification contractuelle -> je suis -> En cdd -> [réponse cdd]
+                                                                                                               -> En cdi -> [réponse cdi]
+                                                                                                               -> auto-entrepreneur -> [réponse auto-entrepreneur]
+                                                                  -> rupture contractuelle -> [réponse rupture contractuelle]
+                                                                  -> les droits au chomage -> [réponse droits au chomage]
+                                                                  -> le régime fiscal      -> [réponse régime fiscal]
                                  -> non -> [Cela ne vous concerne pas]
+                                 -> c'est pas l'intermitant qui fait le moine -> [r1]
+                                 -> C'est beau ... -> [r2]
+
+[LEAFS]
+[réponse cdd]
+# CDD
+Vous êtes donc en **CDD**. Voici quelques informations utiles:
+* Vous avez droit à une prime de précarité
+* Vous avez droit à des congés payés
+* Vous avez droit à une indemnité de fin de contrat
+
+[réponse cdi]
+# CDI
+Vous êtes donc en **CDI**. Voici quelques informations utiles:
+* Vous êtes foutu
+
+
+[réponse auto-entrepreneur]
+# Auto-entrepreneur
+Vous êtes donc auto-entrepreneur. Voici quelques informations utiles:
+* Attention à l"ursaff !!!!
+* Vous êtes foutu
+
+([\`Lien vers l'ursaff\`](https://www.urssaf.fr/accueil.html))
+
+
+[réponse rupture contractuelle]
+# Rupture contractuelle
+Rien a dire
+
+
+[réponse droits au chomage]
+# Droits au chomage
+Rien a dire
+
+
+[réponse régime fiscal]
+# Régime fiscal
+Rien a dire
+
+[Cela ne vous concerne pas]
+# Vous n'êtes pas concerné
+A bientôt
+
+[r1]
+mqskldhjgmlqskndvljmaeoiqlnergezmblzerjgjmnqlskjdfjlsqjkdg
+
+[r2]
+# Boustifaille
+## Boustifaille
+### Boustifaille
