@@ -1,11 +1,13 @@
+/* eslint-disable */
+
 const SEP = " -> ";
 
-interface Leaf {
+export interface Leaf {
   type: 'leaf';
   text: string;
 }
 
-interface Node {
+export interface Node {
   type: 'node';
   label: string;
   children: (Node | Leaf)[];
@@ -81,12 +83,12 @@ export function dagToEcharts(node: Node): any {
 
 // Example usage:
 const D_TEXT = `
-je suis intermitant du spectacle -> oui -> j'ai des questions sur -> la qualification contractuelle -> je suis en cdd            -> [réponse]
-                                                                                                    -> je suis en cdi            -> [réponse]
-                                                                                                    -> je suis auto-entrepreneur -> [réponse]
-                                                                  -> rupture contractuelle -> r
-                                                                  -> les droits au chomage -> r
-                                                                  -> le régime fiscal      -> r
+je suis intermitant du spectacle -> oui -> j'ai des questions sur -> la qualification contractuelle -> je suis -> En cdd -> [réponse cdd]
+                                                                                                               -> En cdi -> [réponse cdi]
+                                                                                                               -> auto-entrepreneur -> [réponse auto-entrepreneur]
+                                                                  -> rupture contractuelle -> [réponse rupture contractuelle]
+                                                                  -> les droits au chomage -> [réponse droits au chomage]
+                                                                  -> le régime fiscal      -> [réponse régime fiscal]
                                  -> non -> [Cela ne vous concerne pas]
 `;
 

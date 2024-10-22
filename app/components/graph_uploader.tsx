@@ -1,10 +1,11 @@
+
 /* eslint-disable */
 
 "use client";
 
 import { parseDAG, dumpDag, dagToEcharts, testParseTextToDAG } from "../lib/graph"
 import ReactECharts from 'echarts-for-react';
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
@@ -62,79 +63,22 @@ const Uploader = (cb: any) => (
     </p>
   </Dragger>
 )
-export default function Explorer() {
+export function GraphUploader(props: {register: any}) {
   let [text, setText] = useState([] as any)
   let subsett = (s: any) => setText([...text, s])
-  let echart_dag = []
+  useEffect(() => {
     if (text.length > 0) {
       let t0 = text[0]
       t0 = t0.split("\n").filter((s: any) => s.length > 0)
       console.log("T0: ", t0)
       let dag = parseDAG(t0)
-      console.log("DAG: ", dag)
-      echart_dag = dagToEcharts(dag)
-    }
-  let option = {
-      tooltip: {
-        trigger: 'item',
-        triggerOn: 'mousemove'
-      },
-      series: [
-        {
-          type: 'tree',
-          roam: true,
-          data: [echart_dag],
-          top: '1%',
-          left: '20%',
-          bottom: '1%',
-          right: '20%',
-          symbolSize: 7,
-          label: {
-            position: 'left',
-            verticalAlign: 'middle',
-            align: 'right',
-            fontSize: 9
-          },
-          leaves: {
-            label: {
-              position: 'right',
-              verticalAlign: 'middle',
-              align: 'left'
-            }
-          },
-          // emphasis: {
-          //   focus: 'descendant'
-          // },
-          expandAndCollapse: true,
-          animationDuration: 550,
-          animationDurationUpdate: 750
-        }
-      ]
-  }
-  console.log("ALL TEXT: ", text)
-  return (
-    <main style={
-      {
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'white'
+      if (props.register) {
+        props.register(dag)
       }
-    }>
-      <div style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%"}}>
-        <div   style={{
-          height: '200px',
-          paddingLeft: "100px",
-          paddingRight: "100px",
-        }}>
-          <Uploader cb={subsett} />
-        </div>
-        <ReactECharts option={option} style={
-          {
-            width: '100%',
-            height: '100%'
-          }
-        }/>
-      </div>
-    </main>
+      console.log("DAG: ", dag)
+    }
+    }, [text])
+  return (
+        <Uploader cb={subsett} />
   );
 }
