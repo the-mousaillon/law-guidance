@@ -19,7 +19,7 @@ export async function POST(request: NextRequest){
         let dag = await request.json()
         try {
             parseDagAndLeafsFromText(dag.dag)
-            const blob = await put(DAG_BLOB_PATH, dag.dag, { access: 'public' });
+            const blob = await put(DAG_BLOB_PATH, dag.dag, { access: 'public', addRandomSuffix: false});
             DagStore.dag = dag.dag
             return NextResponse.json({message: "Success"})
         }
@@ -34,10 +34,11 @@ export async function GET() {
     if (!dag) {
         try {
             let blobs = await list({
-                prefix: '/dags'
+                prefix: 'dags'
             })
-
-            let new_dag = await (await fetch(blobs.blobs[0].downloadUrl)).text()
+            console.log("blobs: ", blobs)
+            console.log("BLOB 0: ", blobs.blobs[0])
+            let new_dag = await (await fetch(blobs.blobs[0].url, {method: "GET"})).text()
             DagStore.dag = new_dag
         }
         catch (e) {
