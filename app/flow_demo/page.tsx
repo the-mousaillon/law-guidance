@@ -59,6 +59,7 @@ export default function FlowSandbox() {
   let rendered_stuff: any = []
   let i = 0;
     if (dag !== null) {
+      console.log("DAG FROM DEMO: ", dag)
       rendered_stuff = [<FlowStep node={node_base} level={0} path={path} setPath={setPath} key={i}/>]
       i+=1
       for (let p of path) {

@@ -36,6 +36,9 @@ export function parseDAG(text: string[], recur: number=0): Node {
   for (let l of text) {
     console.log("slice: ", l.slice(pos_sep, pos_sep + SEP.length))
     let l_shift = l.slice(pos_sep + SEP.length, l.length)
+    if (l_shift.length == 0) {
+      continue
+    }
     if (i == 0 || l.slice(pos_sep, pos_sep + SEP.length) != SEP ){
       sublines.push(l_shift)
       //console.log("sublines: ", sublines)

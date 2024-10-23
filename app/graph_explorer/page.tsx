@@ -2,7 +2,7 @@
 
 "use client";
 
-import { parseDAG, dumpDag, dagToEcharts, testParseTextToDAG } from "../lib/graph"
+import { parseDAG, dumpDag, dagToEcharts, testParseTextToDAG, dumpDagAndLeafs } from "../lib/graph"
 import ReactECharts from 'echarts-for-react';
 import React, { useEffect, useState } from "react";
 
@@ -10,6 +10,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { message, Upload } from 'antd';
 import { RcFile } from "antd/es/upload";
+import { GraphUploader } from "../components/graph_uploader"
 
 const { Dragger } = Upload;
 
@@ -64,14 +65,12 @@ const Uploader = (cb: any) => (
 )
 export default function Explorer() {
   let [text, setText] = useState([] as any)
-  let subsett = (s: any) => setText([...text, s])
+  let [dag, setDag] = useState(null)
   let echart_dag = []
-    if (text.length > 0) {
-      let t0 = text[0]
-      t0 = t0.split("\n").filter((s: any) => s.length > 0)
-      console.log("T0: ", t0)
-      let dag = parseDAG(t0)
-      console.log("DAG: ", dag)
+    if (dag) {
+      let d_str = dumpDagAndLeafs(dag)
+      console.log("DAG DUMP")
+      console.log(d_str)
       echart_dag = dagToEcharts(dag)
     }
   let option = {
@@ -126,7 +125,7 @@ export default function Explorer() {
           paddingLeft: "100px",
           paddingRight: "100px",
         }}>
-          <Uploader cb={subsett} />
+          <GraphUploader register={setDag} />
         </div>
         <ReactECharts option={option} style={
           {
