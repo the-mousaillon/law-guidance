@@ -19,14 +19,14 @@ export async function POST(request: NextRequest){
         let dag = await request.json()
         try {
             parseDagAndLeafsFromText(dag.dag)
+            const blob = await put(DAG_BLOB_PATH, dag.dag, { access: 'public' });
+            DagStore.dag = dag.dag
+            return NextResponse.json({message: "Success"})
         }
         catch (e) {
             return NextResponse.json({message: "Error parsing DAG"}, {status: 400})
         }
-        const blob = await put(DAG_BLOB_PATH, dag.dag, { access: 'public' });
-        DagStore["dag"] = dag.dag
     } 
-    return NextResponse.json({message: "Success"})
 }
 
 export async function GET() {
