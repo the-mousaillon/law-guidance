@@ -15,7 +15,7 @@ export interface Node {
 }
 
 export function parseDAG(text: string[], recur: number=0): Node {
-  if (recur > 20) {
+  if (recur > 300) {
     console.log("RECURSION LIMIT REACHED")
     throw new Error("Recursion limit reached")
   }
